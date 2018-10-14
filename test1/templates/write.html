@@ -1,0 +1,66 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>编写博客</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <style type="text/css">
+            span{
+      	color: red;
+        font-size: 5px;
+      }
+    </style>
+
+<script type="text/javascript">
+function CheckTitle() {
+    var title=document.getElementById("title").value;
+    var span_title=document.getElementById("title1");
+    var title_reg=/^.{0,20}$/ ;
+    if(!title_reg.test(title)){
+        span_title.innerHTML="请注意，不要超过二十个字符"
+        return false
+    }
+        return true
+}
+function CheckContent() {
+    var content=document.getElementById("content").value;
+    var span_content=document.getElementById("content1");
+    var content_reg=/^.{0,200}$/ ;
+    if(!content_reg.test(content)){
+        span_content.innerHTML="请注意，不要超过两千个字符"
+        return false
+    }
+        return true
+}
+
+</script>
+
+
+</head>
+<body>
+	<div class="header_con">
+		<div class="header">
+            <form action="/index/" method="post">
+    {%csrf_token%}
+    <ul>
+        <li>
+            <label>输入标题：</label>
+            <input type="text" name="title" id="title" onblur="CheckTitle()">
+            <span id="title1"></span>
+        </li>
+        <br/> <br/>
+
+       <li>
+           <label>输入内容：</label>
+       </li>&nbsp; &nbsp;
+        <textarea name="content" style="width:300px; height:200px;" id="content" onblur="CheckContent()"></textarea>
+        <span id="content1"></span>
+    </ul>
+<input type="submit" value="提 交" name="">
+</form>
+        </div>
+    </div>
+
+</body>
+</html>
